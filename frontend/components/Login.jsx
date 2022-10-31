@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, TextField, Button} from '@mui/material';
+import { useState } from 'react';
 import { borderRadius } from '@mui/system';
 
 
 const Login = () => {
   //need to use button to go to signup page 
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
   return (
     <div sv={{backgroundImage: `url()`}}>
@@ -28,7 +30,7 @@ const Login = () => {
         
       >
         <Typography variant='h3'  textAlign={'center'} padding={3}>Login</Typography>
-        <TextField variant='outlined' placeholder='Email' type='email'margin='normal'/>
+        <TextField variant='outlined' placeholder='Email' type='email'margin='normal' onChange={(e) => setEmail(e.target.value)}/>
         <TextField placeholder='Password' type='password' margin='normal'/>
         <TextField placeholder='Confirm Password' type='password' margin='normal'/>
         <Button variant='contained' sx={{borderRadius: 3, marginTop: 3 }}>Submit</Button>
