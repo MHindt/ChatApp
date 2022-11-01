@@ -1,15 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, TextField, Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { Image } from 'mui-image';
+import { Avatar } from '@mui/material';
 
 const Register = () => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  useEffect(() => {
+    if(image) {
+      setImageUrl(URL.createObjectURL(image));
+    }
+  }, [image])
   const notify = () => {
     toast.error('Password does not match! Please try again', {
       style: {
@@ -51,6 +58,9 @@ const Register = () => {
     //     })
     //   })
   };
+  const fileHandler = e => {
+
+  }
   const navigate = useNavigate();
   return (
     <>
@@ -106,6 +116,24 @@ const Register = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        <input accept='image/*'
+          type='file'
+          id='select-image'
+          style={{ display: 'none'}}
+          onChange= {e => setImage(e.target.files[0])}
+        />
+        <label htmlFor='select-image'>
+          <Button variant='contained'
+            color='primary'
+            component='span'>
+              Upload Image
+          </Button>
+        </label>
+        {imageUrl && image && (
+          <Avatar src={imageUrl}
+          />
+        )}
+        
         <Button
           variant='contained'
           type='submit'
