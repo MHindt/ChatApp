@@ -39,24 +39,14 @@ const Register = () => {
     let email = e.target.email.value;
     let password = e.target.password.value;
     let confirmPassword = e.target.confirmPassword.value;
+    
     if (password !== confirmPassword) {
       notify();
     }
     if(!email || !userName || !password || !confirmPassword) {
       notify2();
     }
-    //  const info = await fetch('', {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       userName,
-    //       email,
-    //       password,
-    //       confirmPassword
-    //     })
-    //   })
+  
   };
   const fileHandler = e => {
 
@@ -88,7 +78,7 @@ const Register = () => {
           type='text'
           margin='normal'
           name='userName'
-          value={userName}
+          value={this.userName}
           onChange={(e) => setUserName(e.target.value)}
         />
         <TextField
@@ -97,15 +87,15 @@ const Register = () => {
           type='email'
           margin='normal'
           name='email'
-          value={email}
+          value={this.email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           placeholder='Password'
-          type='password'
+          type={'password'}
           margin='normal'
           name='password'
-          value={password}
+          value={this.password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <TextField
@@ -113,7 +103,7 @@ const Register = () => {
           type='password'
           margin='normal'
           name='confirmPassword'
-          value={confirmPassword}
+          value={this.confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <input accept='image/*'
